@@ -9,16 +9,16 @@ const session = require('express-session');
 const logger = require('morgan');
 const uuid = require('node-uuid');
 
-var index = require('./routes/index');
-var admin = require('./routes/admin');
-var users = require('./routes/users');
+var index = require('./app/routes/index');
+var admin = require('./app/routes/admin');
+var users = require('./app/routes/users');
 
 var figlet = require('figlet');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname +'/app/', 'views'));
 app.set('view engine', 'html');
 app.engine("html",require("ejs").renderFile);
 app.locals.pretty = true;
