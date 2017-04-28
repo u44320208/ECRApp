@@ -1,18 +1,37 @@
 {
   "name": "ecrapp",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "~1.15.2",
+    "connect-redis": "^3.1.0",
     "cookie-parser": "~1.4.3",
+    "dateformat": "^1.0.12",
     "debug": "~2.2.0",
     "dotenv": "^4.0.0",
     "ejs": "*",
     "express": "~4.14.0",
+    "express-query-boolean": "^1.0.0",
+    "express-session": "^1.14.2",
+    "figlet": "^1.2.0",
+    "fs-extra": "^1.0.0",
+    "lodash": "^4.17.4",
+    "messageformat": "^1.0.2",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "multer": "^1.2.0",
+    "mysql": "^2.13.0",
+    "node-uuid": "^1.4.7",
+    "sequelize": "^3.30.4",
+    "serve-favicon": "~2.3.0",
+    "winston": "^2.3.0",
+    "winston-graylog2": "^0.5.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
   }
 }
