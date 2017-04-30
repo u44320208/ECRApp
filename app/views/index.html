@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="th">
+<head>
     <meta charset="UTF-8">
-    <title>ระบบคุมงบประมาณ</title>
-  </head>
-  <body>
-    <h1>ECRApp Main Page</h1>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="icon" href="/images/icon-ECRApp.png" type="image/png" />
+    <title>ระบบบันทึกการเบิกจ่ายงบประมาณ</title>
+    <link href="/assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/css/mainsite.css" rel="stylesheet">
+<style>
+	.jumbotron, .btn{
+		box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+  .navbar{
+		box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
+	}
+</style>
+<style> div.required label.control-label:after { content: " *"; color: red; } </style>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w0" class="navbar navbar-dark bg-custom navbar-fixed-top" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w0-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="/">ระบบบันทึกการเบิกจ่ายงบประมาณ</a></div><div id="w0-collapse" class="collapse navbar-collapse"><ul id="w1" class="navbar-nav navbar-right nav"><li><a href="/login">Login</a></li></ul></div></div></nav>	<div id="overlay"></div>  
+		<div class="container">
+						<div class="site-index">
+	<br><br>
+    <div class="jumbotron">
+        <h1>ระบบบันทึกการเบิกจ่ายงบประมาณ</h1>
+
+        <p class="lead">กองช่าง องค์การบริหารส่วนจังหวัดลำปาง</p>
+
+		</div>
+
+    <div class="body-content">
+
+        <div class="row">
+            
+        </div>
+
+    </div>
+</div>
+		</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; กองช่าง องค์การบริหารส่วนจังหวัดลำปาง 2017</p>
+    </div>
+</footer> 
+<!-- Jquery Core Js-->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core Js-->
+<script src="/assets/plugins/bootstrap/js/bootstrap.js"></script>
+</script><script type="text/javascript">
+	/*เมื่อโหลดหน้าจอเสร็จให้ซ่อน object*/
+	$(function(){
+		$("#overlay").fadeOut();
+		$(".main-contain").removeClass("main-contain");
+	});
+</script>
+</body>
 </html>

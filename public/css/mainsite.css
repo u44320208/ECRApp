@@ -1,0 +1,139 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* ทำเงาของ panel */
+.panel{
+		box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+/* กำหนดสีของ navbar  */
+.navbar a {
+			color: white;
+		}
+
+		.nav > li > a:hover, .nav > li > a:focus {
+			text-decoration: none;
+			background-color: #dd5e89;
+            background-color: -webkit-linear-gradient(to right, #dd5e89, #f7bb97);
+            background-color: linear-gradient(to right, #dd5e89, #f7bb97);
+		}
+		.navbar a:hover {
+			color: #334d4d;
+		}
+
+/* กำหนดการแสดงรูประหว่างโหลดหน้าจอ  */
+#overlay {     
+		position: absolute;    
+		top: 0px;     
+		left: 0px;       
+		width: 100%;     
+		height: 100%;     
+		opacity: .65;     
+		filter: alpha(opacity=65);     
+		-moz-opacity: .65;    
+		z-index: 999;    
+		background: #fff url(http://stevieparle.co.uk/images/sp_book_loader.gif) 50% 50% no-repeat;  
+	}
+.main-contain{  
+		position: absolute;    
+		top: 0px;     
+		left: 0px;    
+		width: 100%;     
+		height: 100%;     
+		overflow: hidden;  
+	} 
+
+.bg-custom {
+    color: #fff;
+    background-color: #dd5e89;
+    background-color: -webkit-linear-gradient(to right, #dd5e89, #f7bb97);
+    background-color: linear-gradient(to right, #dd5e89, #f7bb97);
+} 
