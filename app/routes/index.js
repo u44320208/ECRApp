@@ -6,5 +6,6 @@ var controllers = require('../controller');
 router.get('/', controllers.DashBoardController);
 
 router.get('/login', controllers.LoginController);
+router.post('/login', controllers.LoginController);
 
 module.exports = router;

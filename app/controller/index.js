@@ -5,6 +5,10 @@ let names = [
   'DashBoardController',
   'LoginController',
   'AdminDashboardController',
+  'AdminExpendituretypeController',
+  'AdminExpenditureController',
+  'AdminExpensesController',
+  'AdminReportsController',
   'UsersDashboardController'
 ]
 

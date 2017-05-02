@@ -4,5 +4,9 @@ var controllers = require('../controller');
 
 /* GET users listing. */
 router.get('/', controllers.AdminDashboardController);
+router.get('/expendituretype', controllers.AdminExpendituretypeController);
+router.get('/expenditure', controllers.AdminExpenditureController);
+router.get('/expenses', controllers.AdminExpensesController);
+router.get('/reports', controllers.AdminReportsController);
 
 module.exports = router;

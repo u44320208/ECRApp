@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="/images/icon-ECRApp.png" type="image/png" />
     <title>ระบบบันทึกการเบิกจ่ายงบประมาณ</title>
     <!-- Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -22,7 +23,7 @@
       <div class="logo"><a href="javascript:void(0);">กองช่าง</a><small>ระบบบันทึกการเบิกจ่ายงบประมาณ</small></div>
       <div class="card">
         <div class="body">
-          <form id="sign_in" method="POST">
+          <form id="sign_in" method="POST" action="/login">
             <div class="msg">โปรดกรอกชื่อผู้ใช้งานและรหัสผ่าน</div>
             <div class="input-group"><span class="input-group-addon"><i class="material-icons">person</i></span>
               <div class="form-line">
@@ -35,7 +36,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-offset-8 col-xs-4" align="right"><a class="btn btn-block bg-gold waves-effect" href="/" type="submit">SIGN IN</a></div>
+              <div class="col-xs-offset-8 col-xs-4" align="right"><button  class="btn btn-block bg-gold waves-effect" type="submit">SIGN IN</button></div>
             </div>
           </form>
         </div>

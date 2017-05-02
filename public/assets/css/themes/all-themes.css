@@ -1,12 +1,5 @@
 ﻿.theme-red .navbar {
-  background: rgba(112,92,187,1);
-  background: -moz-linear-gradient(left, rgba(112,92,187,1) 0%, rgba(55,149,196,1) 44%, rgba(0,205,205,1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(112,92,187,1)), color-stop(44%, rgba(55,149,196,1)), color-stop(100%, rgba(0,205,205,1)));
-  background: -webkit-linear-gradient(left, rgba(112,92,187,1) 0%, rgba(55,149,196,1) 44%, rgba(0,205,205,1) 100%);
-  background: -o-linear-gradient(left, rgba(112,92,187,1) 0%, rgba(55,149,196,1) 44%, rgba(0,205,205,1) 100%);
-  background: -ms-linear-gradient(left, rgba(112,92,187,1) 0%, rgba(55,149,196,1) 44%, rgba(0,205,205,1) 100%);
-  background: linear-gradient(to right, rgba(112,92,187,1) 0%, rgba(55,149,196,1) 44%, rgba(0,205,205,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#705cbb', endColorstr='#00cdcd', GradientType=1 );
+  background: #F44336
   /*z-index: 9999;*/
   }
 
