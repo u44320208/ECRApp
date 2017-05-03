@@ -8,5 +8,5 @@ module.exports = {
   util,
   logger: configure.logger,
   Tracable: util.tracable,
-  iamsmConstants: util.iamsmConstants
+  ecrappConstants: util.ecrappConstants
 }

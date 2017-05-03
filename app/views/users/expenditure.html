@@ -139,7 +139,183 @@
 
       <!-- Content Goes Here-->
       <section class="content">
-        <!-- *********************  Content *********************** -->
+        <div class="container-fluid">
+          <div class="block-header">
+            <h2>งบประมาณ</h2>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>งบประมาณ<small>เลือกงบประมาณประจำปี</small></h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <select class="form-control show-tick">
+                          <option value="">-- Please select --</option>
+                          <option value="2560">2560</option>
+                          <option value="2559">2559</option>
+                          <option value="2558">2558</option>
+                          <option value="2557">2557</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>รายการงบประมาณประจำปี<small>Expenditure List</small></h2>
+                  <ul class="header-dropdown m-r--5">
+                    <li>
+                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expenditure-modal">เพิ่มงบประมาณประจำปี</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="body">
+                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>ปีงบประมาณ</th>
+                        <th>ประเภท</th>
+                        <th>รายละเอียด</th>
+                        <th>เงินงบประมาณ</th>
+                        <th class="set-center">Edit/View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>2560</td>
+                        <td>ค่าจ้างชั่วคราว</td>
+                        <td>Test</td>
+                        <td>500,000</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expenditure-modal">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>2560</td>
+                        <td>ค่าจ้างประจำ</td>
+                        <td>Test</td>
+                        <td>5,000,000</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expenditure-modal">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>2560</td>
+                        <td>ค่าใช้สอย</td>
+                        <td>Test</td>
+                        <td>1,000,000</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expenditure-modal">search</i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- modal-Expenditure-->
+                  <div class="modal fade" id="expenditure-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">งบประมาณประจำปี</h4>
+                          <div class="modal-close"><i class="material-icons" data-dismiss="modal">close</i></div>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row clearfix">
+                            <div class="col-md-6">
+                              <label>ประจำปีงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>ประเภทงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>เงินงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>รายละเอียดงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" name="expenditure-detail" required="" aria-required="true" aria-invalid="false">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <label>ข้อบัญญัติ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" name="expenditure-text" required="" aria-required="true" aria-invalid="false">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Create Date</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenditure-cDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Create by</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenditure-createBy">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Update Date</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenditure-uDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Update by</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenditure-updateBy">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12" align="center">
+                              <button class="btn btn-primary m-t-15 waves-effect" type="button">บันทึก</button>
+                              <button class="btn btn-primary m-t-15 waves-effect" type="button">ยกเลิก</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- #END modal-Expenditure-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- #END# Content-->
     </section>

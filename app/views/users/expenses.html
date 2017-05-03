@@ -139,7 +139,231 @@
 
       <!-- Content Goes Here-->
       <section class="content">
-        <!-- *********************  Content *********************** -->
+        <div class="container-fluid">
+          <div class="block-header">
+            <h2>การเบิกจ่ายงบประมาณ</h2>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>การเบิกจ่ายงบประมาณ<small>เลือกงบประมาณประจำปี</small></h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <select class="form-control show-tick">
+                          <option value="">-- Please select --</option>
+                          <option value="2560">2560</option>
+                          <option value="2559">2559</option>
+                          <option value="2558">2558</option>
+                          <option value="2557">2557</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>รายการเบิกจ่ายงบประมาณประจำปี<small>Expenses List</small></h2>
+                  <ul class="header-dropdown m-r--5">
+                    <li>
+                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expenses-modal">เพิ่มรายการเบิกจ่ายงบประมาณ</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="body">
+                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>ปี (พ.ศ.)</th>
+                        <th>เลขที่เบิก</th>
+                        <th>วันที่</th>
+                        <th>งบประมาณ</th>
+                        <th>ประเภท (เพิ่ม,ลด)</th>
+                        <th>จำนวนเงิน</th>
+                        <th>รายละเอียด</th>
+                        <th>สถานะ</th>
+                        <th class="set-center">Edit/View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>2560</td>
+                        <td>126/2560</td>
+                        <td>01/05/2560</td>
+                        <td>ค่าจ้างประจำ</td>
+                        <td>ลด</td>
+                        <td>256,000</td>
+                        <td>รายละเอียดการทำรายการเบิก</td>
+                        <td>Active</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expenses-modal">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>2560</td>
+                        <td>111/2560</td>
+                        <td>01/02/2560</td>
+                        <td>ค่าใช้สอย</td>
+                        <td>ลด</td>
+                        <td>2,342,000</td>
+                        <td>รายละเอียดการทำรายการเบิก</td>
+                        <td>Active</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expenses-modal">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>2560</td>
+                        <td>90/2560</td>
+                        <td>15/01/2560</td>
+                        <td>ค่าจ้างชั่วคราว</td>
+                        <td>ลด</td>
+                        <td>42,530</td>
+                        <td>รายละเอียดการทำรายการเบิก</td>
+                        <td>Active</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expenses-modal">search</i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- modal-Expenses-->
+                  <div class="modal fade" id="expenses-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">รายการเบิกจ่าย</h4>
+                          <div class="modal-close"><i class="material-icons" data-dismiss="modal">close</i></div>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row clearfix">
+                            <div class="col-md-6">
+                              <label>ประจำปีงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>งบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>เลขที่ใบเบิก</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>ประเภทรายการ (เพิ่ม,ลด)</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <label>รายละเอียด</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" name="expenses-detail" required="" aria-required="true" aria-invalid="false">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>จำนวนเงินที่ขอเบิก</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>จำนวนเงินที่อนุมัติ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>วันที่ทำรายการ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>สถานะรายการ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Create Date</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenses-cDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Create by</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenses-createBy">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Update Date</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenses-uDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Update by</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expenses-updateBy">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12" align="center">
+                              <button class="btn btn-primary m-t-15 waves-effect" type="button">บันทึก</button>
+                              <button class="btn btn-primary m-t-15 waves-effect" type="button">ยกเลิก</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- #END modal-Expenses-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- #END# Content-->
     </section>
