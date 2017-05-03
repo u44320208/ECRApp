@@ -144,7 +144,121 @@
 
       <!-- Content Goes Here-->
       <section class="content">
-        <!-- *********************  Content *********************** -->
+        <div class="container-fluid">
+          <div class="block-header">
+            <h2>ประเภทงบประมาณ</h2>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>ประเภทงบประมาณ<small>Expendituretype List</small></h2>
+                   <ul class="header-dropdown m-r--5">
+                    <li>
+                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expendituretype-model">เพิ่มประเภทงบประมาณ</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="body">
+                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <thead>
+                      <tr>
+                        <th>รหัสประเภทงบประมาณ</th>
+                        <th>ประเภทงบประมาณ</th>
+                        <th class="set-center">Edit/View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>100</td>
+                        <td>เงินเดือน</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expendituretype-model">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>110</td>
+                        <td>ค่าจ้างประจำ</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expendituretype-model">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>120</td>
+                        <td>ค่าจ้างชั่วคราว</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expendituretype-model">search</i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- modal-Queue-->
+                  <div class="modal fade" id="expendituretype-model" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">ประเภทงบประมาณ</h4>
+                          <div class="modal-close"><i class="material-icons" data-dismiss="modal">close</i></div>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row clearfix">
+                            <div class="col-md-6">
+                              <label>รหัสประเภทงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label>ประเภทงบประมาณ</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Create Date</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-cDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Create by</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-createBy">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Update Date</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-uDate">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label>Update by</label>
+                              <div class="form-group">
+                                <div class="form-line">
+                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-updateBy">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12" align="center">
+                              <button class="btn btn-primary m-t-15 waves-effect" type="button">บันทึก</button>
+                              <button class="btn btn-primary m-t-15 waves-effect" type="button">ยกเลิก</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- #END modal-IncomeExpense-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- #END# Content-->
     </section>
