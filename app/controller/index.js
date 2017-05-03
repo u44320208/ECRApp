@@ -9,7 +9,13 @@ let names = [
   'AdminExpenditureController',
   'AdminExpensesController',
   'AdminReportsController',
-  'UsersDashboardController'
+  'AdminUsersController',
+  'UsersDashboardController',
+  'UsersExpendituretypeController',
+  'UsersExpenditureController',
+  'UsersExpensesController',
+  'UsersReportsController',
+  'UsersUserController'
 ]
 
 let instances = {}
