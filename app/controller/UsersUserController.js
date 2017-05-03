@@ -14,7 +14,7 @@ module.exports = class UsersUserController extends AbstractController {
   }
 
   execute(req, res) {
-      res.send('UsersUserController');
+      return res.render('users/user')
   }
 
 }

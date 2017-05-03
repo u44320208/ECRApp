@@ -14,7 +14,7 @@ module.exports = class AdminExpensesController extends AbstractController {
   }
 
   execute(req, res) {
-      res.send('AdminExpensesController');
+      return res.render('admin/expenses')
   }
 
 }
