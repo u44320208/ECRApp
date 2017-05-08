@@ -4,7 +4,9 @@ const daos = require('../dao');
 const { logger } = require('../../app-common');
 
 let names = [
-  
+  'ExpendituretypeService',
+  'ExpenditureService',
+  'ExpenseService'
 ]
 
 let instances = {}

@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
 	var Expendituretype = sequelize.define('Expendituretype', {
-			expendituretypeId: {field: 'expendituretype_id', type: DataTypes.INTEGER.UNSIGNED, allowNull: false, primaryKey: true, autoIncrement: true},
+			expendituretypeId: {field: 'expendituretype_id', type: DataTypes.INTEGER.UNSIGNED, allowNull: false, primaryKey: true},
 			expendituretype: {field: 'expendituretype', type: DataTypes.STRING, allowNull: false}
 		}, 
 		{

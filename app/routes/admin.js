@@ -4,7 +4,15 @@ var controllers = require('../controller');
 
 /* GET users listing. */
 router.get('/', controllers.AdminDashboardController);
+
+/************ Expendituretype management *************/
 router.get('/expendituretype', controllers.AdminExpendituretypeController);
+router.get('/expendituretype/:cmd', controllers.AdminExpendituretypeController);
+router.get('/expendituretype/:cmd/:expendituretypeId', controllers.AdminExpendituretypeController);
+router.post('/expendituretype', controllers.AdminExpendituretypeController);
+router.post('/expendituretype/:cmd/:expendituretypeId', controllers.AdminExpendituretypeController);
+router.delete('/expendituretype/:expendituretypeId', controllers.AdminExpendituretypeController);
+
 router.get('/expenditure', controllers.AdminExpenditureController);
 router.get('/expenses', controllers.AdminExpensesController);
 router.get('/reports', controllers.AdminReportsController);

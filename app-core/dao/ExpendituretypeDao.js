@@ -18,9 +18,9 @@ let AbstractDao = require('./AbstractDao');
 
 //  class/object Definition
 /*
-// 2017-05-08 .................. create ExpenseDao.js
+// 2017-05-08 .................. create ExpendituretypeDao.js
 */
-module.exports = class ExpenseDao extends AbstractDao {
+module.exports = class ExpendituretypeDao extends AbstractDao {
 
   constructor(logger) {
     super(logger)

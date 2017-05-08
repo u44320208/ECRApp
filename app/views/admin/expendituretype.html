@@ -160,95 +160,49 @@
                   </ul>
                 </div>
                 <div class="body">
-                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                  <table class="table table-bordered table-striped table-hover" id="expendituretype-table">
                     <thead>
                       <tr>
+                        <th>ลำดับที่</th>
                         <th>รหัสประเภทงบประมาณ</th>
                         <th>ประเภทงบประมาณ</th>
                         <th class="set-center">Edit/View</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>100</td>
-                        <td>เงินเดือน</td>
-                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expendituretype-model">search</i></td>
-                      </tr>
-                      <tr>
-                        <td>110</td>
-                        <td>ค่าจ้างประจำ</td>
-                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expendituretype-model">search</i></td>
-                      </tr>
-                      <tr>
-                        <td>120</td>
-                        <td>ค่าจ้างชั่วคราว</td>
-                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#expendituretype-model">search</i></td>
-                      </tr>
-                    </tbody>
                   </table>
                   <!-- modal-Expendituretype-->
                   <div class="modal fade" id="expendituretype-model" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title">ประเภทงบประมาณ</h4>
+                          <h4 class="modal-title" id="expendituretype-title-detail">ประเภทงบประมาณ</h4>
                           <div class="modal-close"><i class="material-icons" data-dismiss="modal">close</i></div>
                         </div>
                         <div class="modal-body">
-                          <div class="row clearfix">
-                            <div class="col-md-6">
-                              <label>รหัสประเภทงบประมาณ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                          <form id="form-expendituretype">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                <label>รหัสประเภทงบประมาณ</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expendituretypeId" required>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>ประเภทงบประมาณ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                              <div class="col-md-6">
+                                <label>ประเภทงบประมาณ</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expendituretype" required>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Create Date</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-cDate">
-                                </div>
+                              <div class="col-md-12" align="center">
+                                <button class="btn btn-primary m-t-15 waves-effect" id="btn-expendituretype" type="button">บันทึก</button>
+                                <button class="btn btn-primary m-t-15 waves-effect" type="button" data-dismiss="modal">ยกเลิก</button>
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <label>Create by</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-createBy">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Update Date</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-uDate">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Update by</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expendituretype-updateBy">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12" align="center">
-                              <button class="btn btn-primary m-t-15 waves-effect" type="button">บันทึก</button>
-                              <button class="btn btn-primary m-t-15 waves-effect" type="button">ยกเลิก</button>
-                            </div>
-                          </div>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -303,10 +257,112 @@
       $(function(){
 
           // Menu Activated
-            $( "#left-menu-master-data").addClass( 'active' );
-            $( "#left-menu-master-data ul" ).show();
-            $( "#left-menu-master-data li:nth-child(1)").addClass( 'active' );
-            $( "#left-menu-master-data a:nth-child(1)").addClass( 'toggled' );
+          $( "#left-menu-master-data").addClass( 'active' );
+          $( "#left-menu-master-data ul" ).show();
+          $( "#left-menu-master-data li:nth-child(1)").addClass( 'active' );
+          $( "#left-menu-master-data a:nth-child(1)").addClass( 'toggled' );
+
+          // Add Validation to Form
+        var FormExpendituretype = $('#form-expendituretype').validate();
+
+          var ExpendituretypeTable = $('#expendituretype-table').dataTable( {
+              bProcessing: true,
+              bServerSide: true,
+              ajax: {
+                  url: "/admin/expendituretype/list-expendituretype",
+                  type: "GET"
+              },
+              bInfo: true,
+              pageLength: 10,
+              bLengthChange: true,
+              bFilter: true,
+              bAutoWidth: false,
+              columnDefs: [
+              {"name": "number", targets: [ 0 ], visible: true, searchable: false, sortable: false, width: '30px'},
+              {"name": "expendituretypeId", targets: [ 1 ], visible: true, searchable: true, sortable: true},
+              {"name": "expendituretype", targets: [ 2 ], visible: true, searchable: true, sortable: true},
+              {"name": "edit",targets: [ 3 ], visible: true, searchable: false, sortable: false, className: 'text-center'}
+              ],
+              order: [[ 1, "asc" ]],
+          }).api();
+
+          $( 'table' ).delegate('.icon-expendituretype-detail', 'click', function() {
+
+            let expendituretypeId = $(this).data('idx');
+
+            $.ajax({
+              type: "GET",
+              url: '/admin/expendituretype/detail-expendituretype/'+expendituretypeId,
+            }).done(function( resp ) {
+              console.log(resp)
+              if(resp.status != '200'){
+                swal({
+                    type: "error",
+                    title: "เกิดข้อผิดพลาด",
+                    text: "กรุณาติดต่อผู้ดูแลระบบ",
+                    timer: 2000,
+                    showConfirmButton: true
+                  });
+                  return;
+              }else{
+                $('#expendituretype-title-detail').html('ประเภทงบประมาณ : '+resp.data.expendituretypeId)
+                $('#btn-expendituretype').attr('data-idx',resp.data.expendituretypeId)
+
+                $('input[name="expendituretypeId"]').val(resp.data.expendituretypeId);
+                $('input[name="expendituretype"]').val(resp.data.expendituretype);
+                
+                $('#expendituretype-model.modal').modal('show');
+              }
+            })
+          })
+
+        $("#expendituretype-model.modal").on('hidden.bs.modal', function () {
+            $("#form-expendituretype").trigger('reset');
+            $('#expendituretype-title-detail').html('ประเภทงบประมาณ')
+            $('#btn-expendituretype').attr('data-idx','')
+        });
+
+        $('body').delegate('#btn-expendituretype', 'click', function() {
+          if($('#form-expendituretype').valid()){
+            let expendituretypeId = $(this).attr('data-idx');
+            let expendituretype = $('input[name="expendituretype"]').val();
+
+            let url = ''
+            expendituretypeId ? url = '/admin/expendituretype/update-expendituretype/'+expendituretypeId  : url = '/admin/expendituretype'
+            
+            expendituretypeId = $('input[name="expendituretypeId"]').val();
+
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: {
+                      expendituretypeId: expendituretypeId,
+                      expendituretype: expendituretype,
+                    },
+              dataType: 'json'
+            }).done(function( resp ) {
+              console.log(resp)
+              if(resp.status != '200'){
+                swal({
+                    type: "error",
+                    title: "เกิดข้อผิดพลาด",
+                    text: "กรุณาติดต่อผู้ดูแลระบบ",
+                    timer: 2000,
+                    showConfirmButton: true,
+                    onClose: function(){
+                        
+                    }
+                  });
+                  return;
+              }else{
+                ExpendituretypeTable.ajax.reload();
+                $('#expendituretype-model.modal').modal('hide');
+              }
+            })
+          }else{
+            FormExpendituretype.focusInvalid();
+          }
+        })
             
       })
     </script>
