@@ -54,7 +54,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-figlet('LPPAO Chang \n..\n by Chakrit Peungtokit', function (err, data) {
+figlet('ECRApp LPPAO Chang \n..\n by Chakrit Peungtokit', function (err, data) {
   if (err) {
     console.log('There are something went wrong... plz contact admin');
     console.dir(err);

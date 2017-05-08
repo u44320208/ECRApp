@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
 			expendituretypeId: {field: 'expendituretype_id', type: DataTypes.INTEGER(4), allowNull: false},
 			expenditureDetail: {field: 'expenditure_detail', type: DataTypes.TEXT, allowNull: false},
 			expenditureText: {field: 'expenditure_text', type: DataTypes.TEXT, allowNull: false},
-			expenditureAmoun: {field: 'expenditure_amoun', type: "DOUBLE", allowNull: false},
+			expenditureAmount: {field: 'expenditure_amount', type: "DOUBLE", allowNull: false},
 			insertName: {field: 'insert_name', type: DataTypes.STRING, allowNull: false, defaultValue: "admin"},
 			insertDate: {field: 'insert_date', type: DataTypes.DATE, allowNull: false},
 			updateName: {field: 'update_name', type: DataTypes.STRING, allowNull: true},

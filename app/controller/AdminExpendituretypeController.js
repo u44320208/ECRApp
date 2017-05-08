@@ -82,7 +82,6 @@ module.exports = class AdminExpendituretypeController extends AbstractController
           $or: [
             {  expendituretype : {$like: '%' + req.query.search.value + '%'}  }
           ],
-          //status: 'active',
         }
     }
 
@@ -159,7 +158,7 @@ module.exports = class AdminExpendituretypeController extends AbstractController
       })
       .catch((err) => {
         tracer.log("ERROR : ", err)
-        return Promise.reject(new exception.BusinessException('710000', null, [JSON.stringify(workShiftObj)]))
+        return Promise.reject(new exception.BusinessException('710000', null, [JSON.stringify(expendituretypeObj)]))
       })
       .finally(tracer.endDetach())
   }
@@ -169,8 +168,6 @@ module.exports = class AdminExpendituretypeController extends AbstractController
 
     tracer.log('=====> req.params :: ', req.params)
     tracer.log('=====> req.body :: ', req.body)
-
-    let nowDate = new Date()
 
     let expendituretypeObj = {
       expendituretypeId: req.body.expendituretypeId,

@@ -155,7 +155,7 @@
                   <h2>ประเภทงบประมาณ<small>Expendituretype List</small></h2>
                    <ul class="header-dropdown m-r--5">
                     <li>
-                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expendituretype-model">เพิ่มประเภทงบประมาณ</button>
+                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expendituretype-modal">เพิ่มประเภทงบประมาณ</button>
                     </li>
                   </ul>
                 </div>
@@ -163,7 +163,7 @@
                   <table class="table table-bordered table-striped table-hover" id="expendituretype-table">
                     <thead>
                       <tr>
-                        <th>ลำดับที่</th>
+                        <th>#</th>
                         <th>รหัสประเภทงบประมาณ</th>
                         <th>ประเภทงบประมาณ</th>
                         <th class="set-center">Edit/View</th>
@@ -171,7 +171,7 @@
                     </thead>
                   </table>
                   <!-- modal-Expendituretype-->
-                  <div class="modal fade" id="expendituretype-model" tabindex="-1" role="dialog">
+                  <div class="modal fade" id="expendituretype-modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -263,7 +263,7 @@
           $( "#left-menu-master-data a:nth-child(1)").addClass( 'toggled' );
 
           // Add Validation to Form
-        var FormExpendituretype = $('#form-expendituretype').validate();
+          var FormExpendituretype = $('#form-expendituretype').validate();
 
           var ExpendituretypeTable = $('#expendituretype-table').dataTable( {
               bProcessing: true,
@@ -311,12 +311,12 @@
                 $('input[name="expendituretypeId"]').val(resp.data.expendituretypeId);
                 $('input[name="expendituretype"]').val(resp.data.expendituretype);
                 
-                $('#expendituretype-model.modal').modal('show');
+                $('#expendituretype-modal.modal').modal('show');
               }
             })
           })
 
-        $("#expendituretype-model.modal").on('hidden.bs.modal', function () {
+        $("#expendituretype-modal.modal").on('hidden.bs.modal', function () {
             $("#form-expendituretype").trigger('reset');
             $('#expendituretype-title-detail').html('ประเภทงบประมาณ')
             $('#btn-expendituretype').attr('data-idx','')
@@ -356,7 +356,7 @@
                   return;
               }else{
                 ExpendituretypeTable.ajax.reload();
-                $('#expendituretype-model.modal').modal('hide');
+                $('#expendituretype-modal.modal').modal('hide');
               }
             })
           }else{
