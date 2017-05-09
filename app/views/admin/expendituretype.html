@@ -182,7 +182,7 @@
                           <form id="form-expendituretype">
                             <div class="row clearfix">
                               <div class="col-md-6">
-                                <label>รหัสประเภทงบประมาณ</label>
+                                <label>รหัสประเภทงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
                                     <input class="form-control" type="text" name="expendituretypeId" required>
@@ -190,7 +190,7 @@
                                 </div>
                               </div>
                               <div class="col-md-6">
-                                <label>ประเภทงบประมาณ</label>
+                                <label>ประเภทงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
                                     <input class="form-control" type="text" name="expendituretype" required>
@@ -278,10 +278,10 @@
               bFilter: true,
               bAutoWidth: false,
               columnDefs: [
-              {"name": "number", targets: [ 0 ], visible: true, searchable: false, sortable: false, width: '30px'},
-              {"name": "expendituretypeId", targets: [ 1 ], visible: true, searchable: true, sortable: true},
-              {"name": "expendituretype", targets: [ 2 ], visible: true, searchable: true, sortable: true},
-              {"name": "edit",targets: [ 3 ], visible: true, searchable: false, sortable: false, className: 'text-center'}
+                {"name": "number", targets: [ 0 ], visible: true, searchable: false, sortable: false, width: '30px'},
+                {"name": "expendituretypeId", targets: [ 1 ], visible: true, searchable: true, sortable: true},
+                {"name": "expendituretype", targets: [ 2 ], visible: true, searchable: true, sortable: true},
+                {"name": "edit",targets: [ 3 ], visible: true, searchable: false, sortable: false, className: 'text-center'}
               ],
               order: [[ 1, "asc" ]],
           }).api();

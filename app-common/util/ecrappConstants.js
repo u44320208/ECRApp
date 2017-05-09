@@ -8,32 +8,40 @@ function define(name, value) {
 define("EXPENSETYPE", [
     {
         typeId: '10',
-        typeName: 'เพิ่ม'
+        typeName: 'เบิกจ่าย'
     },
     {
         typeId: '20',
-        typeName: 'ลด'
+        typeName: 'โอนลด'
+    },
+    {
+        typeId: '30',
+        typeName: 'โอนเพิ่ม'
+    },
+    {
+        typeId: '90',
+        typeName: 'คาดว่าจะใช้'
     }
 ]);
 
 define("EXPENSESTATUS", [
     {
-        typeId: 10,
+        typeId: '10',
         typeName: 'ปกติ'
     },
     {
-        typeId: 20,
+        typeId: '20',
         typeName: 'ยกเลิก'
     }
 ]);
 
 define("USERSROLE", [
     {
-        typeId: 10,
+        typeId: '10',
         typeName: 'Admin'
     },
     {
-        typeId: 20,
+        typeId: '20',
         typeName: 'User'
     }
 ]);

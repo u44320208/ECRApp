@@ -159,12 +159,10 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <select class="form-control show-tick">
-                          <option value="">-- Please select --</option>
-                          <option value="2560">2560</option>
-                          <option value="2559">2559</option>
-                          <option value="2558">2558</option>
-                          <option value="2557">2557</option>
+                        <select class="form-control show-tick" id="select-year" name="select-year">
+                          <% EXPENSEYEAR.forEach(function(expenseYear){ %>
+                          <option value="<%= expenseYear.expenseYear %>" ><%= expenseYear.expenseYear%></option>
+                          <% }); %>
                         </select>
                       </div>
                     </div>
@@ -181,20 +179,22 @@
                   <h2>รายการเบิกจ่ายงบประมาณประจำปี<small>Expenses List</small></h2>
                   <ul class="header-dropdown m-r--5">
                     <li>
-                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expenses-modal">เพิ่มรายการเบิกจ่ายงบประมาณ</button>
+                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#expenses-modal" id="btn-addExpenses">เพิ่มรายการเบิกจ่ายงบประมาณ</button>
                     </li>
                   </ul>
                 </div>
                 <div class="body">
-                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                  <table class="table table-bordered table-striped table-hover" id="expenses-table">
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>ปี (พ.ศ.)</th>
+                        <th>ID</th>
+                        <th>ปี</th>
                         <th>เลขที่เบิก</th>
                         <th>วันที่</th>
+                        <th>TypeId</th>
                         <th>งบประมาณ</th>
-                        <th>ประเภท (เพิ่ม,ลด)</th>
+                        <th>ประเภท</th>
                         <th>จำนวนเงิน</th>
                         <th>รายละเอียด</th>
                         <th>สถานะ</th>
@@ -245,120 +245,147 @@
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title">รายการเบิกจ่าย</h4>
+                          <h4 class="modal-title" id="expenses-title-detail">รายการเบิกจ่าย</h4>
                           <div class="modal-close"><i class="material-icons" data-dismiss="modal">close</i></div>
                         </div>
                         <div class="modal-body">
-                          <div class="row clearfix">
-                            <div class="col-md-6">
-                              <label>ประจำปีงบประมาณ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                          <form id="form-expenses">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                <label>ประจำปีงบประมาณ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseYear" required="">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <label>งบประมาณ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <select class="form-control show-tick" id="expenditureId" name="expenditureId" required="">
+                                      <option value="">-- Please select --</option>
+                                      <% EXPENDITURE.forEach(function(expenditure){ %>
+                                      <option value="<%= expenditure.expenditureId %>" ><%= expenditure.expenditureDetail%></option>
+                                      <% }); %>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label>งบประมาณ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                <label>เลขที่ใบเบิก</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseReceipt" required="">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <label>ประเภทรายการ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <select class="form-control show-tick" id="expenseType" name="expenseType" required="">
+                                      <option value="">-- Please select --</option>
+                                      <% EXPENSETYPE.forEach(function(expenseType){ %>
+                                      <option value="<%= expenseType.typeId %>" ><%= expenseType.typeName%></option>
+                                      <% }); %>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label>เลขที่ใบเบิก</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                            <div class="row clearfix">
+                              <div class="col-md-12">
+                                <label>รายละเอียด</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseDetail" required="">
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label>ประเภทรายการ (เพิ่ม,ลด)</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                <label>จำนวนเงินที่ขอเบิก</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseAmount" required="">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <label>จำนวนเงินที่อนุมัติ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseApprove" required="">
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-12">
-                              <label>รายละเอียด</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" name="expenses-detail" required="" aria-required="true" aria-invalid="false">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                <label>วันที่ทำรายการ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="input-group" style="margin-bottom: 0px"><span class="input-group-addon"><i class="material-icons">date_range</i></span>
+                                    <div class="form-line">
+                                      <input class="form-control datepicker" id="expenseDate" type="text" name="expenseDate" required>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <label>สถานะรายการ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <input id="radio_3" name="expenseStatus" type="radio" value="10" checked="">
+                                  <label for="radio_3">ปกติ</label>
+                                  <input id="radio_4" name="expenseStatus" type="radio" value="20">
+                                  <label for="radio_4">ยกเลิก</label>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label>จำนวนเงินที่ขอเบิก</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
+                            <div class="row clearfix">
+                              <div class="col-md-3">
+                                <label>Create Date</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="insertDate">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Create by</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="insertName">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Update Date</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="updateDate">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Update by</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="updateName">
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label>จำนวนเงินที่อนุมัติ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
-                                </div>
+                            <div class="row clearfix">
+                              <div class="col-md-12" align="center">
+                                <button class="btn btn-primary m-t-15 waves-effect" id="btn-expenses" type="button">บันทึก</button>
+                                <button class="btn btn-primary m-t-15 waves-effect" type="button" data-dismiss="modal">ยกเลิก</button>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <label>วันที่ทำรายการ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>สถานะรายการ</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" placeholder="">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Create Date</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expenses-cDate">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Create by</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expenses-createBy">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Update Date</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expenses-uDate">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label>Update by</label>
-                              <div class="form-group">
-                                <div class="form-line">
-                                  <input class="form-control" type="text" disabled="disabled" name="expenses-updateBy">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12" align="center">
-                              <button class="btn btn-primary m-t-15 waves-effect" type="button">บันทึก</button>
-                              <button class="btn btn-primary m-t-15 waves-effect" type="button">ยกเลิก</button>
-                            </div>
-                          </div>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -413,10 +440,164 @@
       $(function(){
 
           // Menu Activated
-            $( "#left-menu-master-expense").addClass( 'active' );
-            $( "#left-menu-master-expense ul" ).show();
-            $( "#left-menu-master-expense li:nth-child(1)").addClass( 'active' );
-            $( "#left-menu-master-expense a:nth-child(1)").addClass( 'toggled' );
+          $( "#left-menu-master-expense").addClass( 'active' );
+          $( "#left-menu-master-expense ul" ).show();
+          $( "#left-menu-master-expense li:nth-child(1)").addClass( 'active' );
+          $( "#left-menu-master-expense a:nth-child(1)").addClass( 'toggled' );
+
+          // Add Validation to Form
+          var FormExpenses = $('#form-expenses').validate();
+
+          var ExpensesTable = $('#expenses-table').dataTable( {
+              bProcessing: true,
+              bServerSide: true,
+              ajax: {
+                  url: "/admin/expenses/list-expenses",
+                  type: "GET",
+                  data: function( d ) {
+                    d.expenseYear = $('select[name="select-year"]').val()
+                  },
+              },
+              bInfo: true,
+              pageLength: 10,
+              bLengthChange: true,
+              bFilter: true,
+              bAutoWidth: false,
+              columnDefs: [
+                {"name": "number", targets: [ 0 ], visible: true, searchable: false, sortable: false, width: '20px'},
+                {"name": "expenseId", targets: [ 1 ], visible: false, searchable: false, sortable: false},
+                {"name": "expenseYear", targets: [ 2 ], visible: true, searchable: false, sortable: false},
+                {"name": "expenseReceipt", targets: [ 3 ], visible: true, searchable: true, sortable: true},
+                {"name": "expenseDate", targets: [ 4 ], visible: true, searchable: false, sortable: false},
+                {"name": "expenditureId", targets: [ 5 ], visible: false, searchable: false, sortable: false},
+                {"name": "expenditureDetail", targets: [ 6 ], visible: true, searchable: false, sortable: false},
+                {"name": "expenseType", targets: [ 7 ], visible: true, searchable: false, sortable: false},
+                {"name": "expenseAmount", targets: [ 8 ], visible: true, searchable: true, sortable: true, className: 'text-rigth'},
+                {"name": "expenseDetail", targets: [ 9 ], visible: true, searchable: true, sortable: true},
+                {"name": "expenseStatus", targets: [ 10 ], visible: true, searchable: false, sortable: false},
+                {"name": "edit",targets: [ 11 ], visible: true, searchable: false, sortable: false, width: '20px', className: 'text-center'}
+              ],
+              order: [[ 1, "desc" ]],
+          }).api();
+
+          $( 'body' ).delegate('#select-year', 'change', function() {
+              ExpensesTable.ajax.reload()
+          })
+
+          $( 'body' ).delegate('#btn-addExpenses', 'click', function() {
+              $('input[name="expenseYear"]').val($('select[name="select-year"]').val());
+          })
+
+          $( 'table' ).delegate('.icon-expenses-detail', 'click', function() {
+
+              let expenseId = $(this).data('idx');
+
+              $.ajax({
+                type: "GET",
+                url: '/admin/expenses/detail-expenses/'+expenseId,
+              }).done(function( resp ) {
+                console.log(resp)
+                if(resp.status != '200'){
+                  swal({
+                      type: "error",
+                      title: "เกิดข้อผิดพลาด",
+                      text: "กรุณาติดต่อผู้ดูแลระบบ",
+                      timer: 2000,
+                      showConfirmButton: true,
+                      onClose: function(){
+                          
+                      }
+                    });
+                    return;
+                }else{
+                  $('#expenses-title-detail').html('รายการเบิกจ่าย : '+resp.data.expenseId)
+                  $('#btn-expenses').attr('data-idx',resp.data.expenseId)
+
+                  resp.data.expenseStatus === '10' ? $('input[name="expenseStatus"]')[0].checked = true : $('input[name="expenseStatus"]')[1].checked = true
+
+                  $('input[name="expenseYear"]').val(resp.data.expenseYear);
+                  $('#expenditureId').val(resp.data.expenditureId);
+                  $('#expenditureId').selectpicker('refresh');
+                  $('input[name="expenseReceipt"]').val(resp.data.expenseReceipt);
+                  $('#expenseType').val(resp.data.expenseType);
+                  $('#expenseType').selectpicker('refresh');
+                  $('input[name="expenseDetail"]').val(resp.data.expenseDetail);
+                  $('input[name="expenseAmount"]').val(resp.data.expenseAmount);
+                  $('input[name="expenseApprove"]').val(resp.data.expenseApprove);
+                  $('input[name="expenseDate"]').val(resp.data.expenseDate);
+                  $('input[name="insertName"]').val(resp.data.insertName);
+                  $('input[name="insertDate"]').val(resp.data.insertDate);
+                  $('input[name="updateName"]').val(resp.data.updateName);
+                  $('input[name="updateDate"]').val(resp.data.updateDate);
+                  
+                  $('#expenses-modal.modal').modal('show');
+                }
+              })
+          })
+
+          $("#expenses-modal.modal").on('hidden.bs.modal', function () {
+              $("#form-expenses").trigger('reset');
+              $('#expenses-title-detail').html('รายการเบิกจ่าย')
+              $('#btn-expenses').attr('data-idx','')
+              $('select[name="expenditureId"]').selectpicker('render');
+              $('select[name="expenseType"]').selectpicker('render');
+          });
+
+          $('body').delegate('#btn-expenses', 'click', function() {
+            if($('#form-expenses').valid()){
+              let expenseId = $(this).attr('data-idx');
+              let expenseYear = $('input[name="expenseYear"]').val();
+              let expenditureId = $('select[name="expenditureId"]').val();
+              let expenseType = $('select[name="expenseType"]').val();
+              let expenseDetail = $('input[name="expenseDetail"]').val();
+              let expenseAmount = $('input[name="expenseAmount"]').val();
+              let expenseApprove = $('input[name="expenseApprove"]').val();
+              let expenseDate = $('input[name="expenseDate"]').val();
+              let expenseReceipt = $('input[name="expenseReceipt"]').val();
+              let expenseStatus = $('input[name="expenseStatus"]:checked').val();
+
+              let url = ''
+              expenseId ? url = '/admin/expenses/update-expenses/'+expenseId  : url = '/admin/expenses'
+
+              $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                        expenseId: expenseId,
+                        expenseYear: expenseYear,
+                        expenditureId: expenditureId,
+                        expenseType: expenseType,
+                        expenseDetail: expenseDetail,
+                        expenseAmount: expenseAmount,
+                        expenseApprove: expenseApprove,
+                        expenseDate: expenseDate,
+                        expenseReceipt: expenseReceipt,
+                        expenseStatus: expenseStatus,
+                      },
+                dataType: 'json'
+              }).done(function( resp ) {
+                console.log(resp)
+                if(resp.status != '200'){
+                  swal({
+                      type: "error",
+                      title: "เกิดข้อผิดพลาด",
+                      text: "กรุณาติดต่อผู้ดูแลระบบ",
+                      timer: 2000,
+                      showConfirmButton: true,
+                      onClose: function(){
+                          
+                      }
+                    });
+                    return;
+                }else{
+                  ExpensesTable.ajax.reload();
+                  $('#expenses-modal.modal').modal('hide');
+                }
+              })
+            }else{
+              FormExpenses.focusInvalid();
+            }
+          })
             
       })
     </script>

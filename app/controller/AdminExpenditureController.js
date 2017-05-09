@@ -27,7 +27,6 @@ module.exports = class AdminExpenditureController extends AbstractController {
                 .then((_expendituretype) => {
                     return Promise.resolve(models.Expenditure.findAll({attributes: ['expenditureYear'],group: 'expenditureYear',order: 'expenditureYear DESC'}))
                       .then((_expenditureYear)=> {
-                        console.log(_expendituretype+' : '+_expenditureYear)
                         return Promise.resolve(res.render('admin/expenditure',{EXPENDITURETYPE: _expendituretype, EXPENDITUREYEAR: _expenditureYear}))
                       })
                 })
@@ -94,8 +93,8 @@ module.exports = class AdminExpenditureController extends AbstractController {
         _where = { 
             expenditureYear : expenditureYear,
             $or: [
-              { expenditure_detail : {$like: '%' + req.query.search.value + '%'} },
-              { expenditure_amount : {$like: '%' + req.query.search.value + '%'} },
+              { expenditureDetail : {$like: '%' + req.query.search.value + '%'} },
+              { expenditureAmount : {$like: '%' + req.query.search.value + '%'} },
             ],
           }
       }
