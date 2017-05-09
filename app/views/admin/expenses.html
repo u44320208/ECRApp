@@ -227,9 +227,6 @@
                                   <div class="form-line">
                                     <select class="form-control show-tick" id="expenditureId" name="expenditureId" required>
                                       <option value="">-- Please select --</option>
-                                      <% EXPENDITURE.forEach(function(expenditure){ %>
-                                      <option value="<%= expenditure.expenditureId %>" data-year="<%= expenditure.expenditureYear %>"><%= expenditure.expenditureDetail%></option>
-                                      <% }); %>
                                     </select>
                                   </div>
                                 </div>
@@ -442,8 +439,37 @@
               order: [[ 1, "desc" ]],
           }).api();
 
+          var listExpenditure = function(expenditureYear) {
+              $.ajax({
+                  url: "/admin/expenditure/list-expendituredetail",
+                  type: "GET",
+                  data: {
+                    expenditureYear: expenditureYear
+                  }
+              }).done(function(data) {
+                let select = $("#expenditureId")
+                select.empty()
+                select.append('<option value="">-- Please select --</option>')
+                for (let rows in data) {
+                    let option = document.createElement('option');
+                    option.innerHTML = data[rows].expenditureDetail
+                    option.value = data[rows].expenditureId;
+                    select.append(option)
+                }
+                select.selectpicker("refresh");
+              })
+          }
+
+          // Call listExpenditure()
+          listExpenditure($('select[name="select-year"]').val())
+
           $( 'body' ).delegate('#select-year', 'change', function() {
               ExpensesTable.ajax.reload()
+              listExpenditure(this.value)
+          })
+
+          $( 'body' ).delegate('input[name="expenseYear"]', 'change', function() {
+              listExpenditure(this.value)
           })
 
           $( 'body' ).delegate('#btn-addExpenses', 'click', function() {
@@ -504,6 +530,7 @@
               $('select[name="expenditureId"]').selectpicker('render');
               $('select[name="expenseType"]').selectpicker('render');
               FormExpenses.resetForm();
+              listExpenditure($('select[name="select-year"]').val())
           });
 
           $('body').delegate('#btn-expenses', 'click', function() {

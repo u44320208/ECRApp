@@ -38,6 +38,8 @@ module.exports = class AdminExpenditureController extends AbstractController {
               if(!_.isNull(expenditureId)){
                   return this.getExpenditureById(req, res, expenditureId)
               }
+          }else if (_.eq(cmd, 'list-expendituredetail')) {
+              return this.getExpenditureDetail(req, res, expenditureId)
           }
 
           return res.send("No Page Found!!");
@@ -232,6 +234,21 @@ module.exports = class AdminExpenditureController extends AbstractController {
 
   deleteExpenditureById(req, res, expenditureId){
     return res.send("deleteExpenditureById : "+expenditureId);
+  }
+
+  getExpenditureDetail(req, res, expenditureId){
+    let tracer = this.trace(req.processInfo.tracking, null)
+
+    let expenditureYear = req.query.expenditureYear
+
+    if(!_.isNull(expenditureYear)){
+      let _where = { expenditureYear: expenditureYear }
+      return models.Expenditure.findAll({attributes: ['expenditureId','expenditureDetail'], order: 'expenditureDetail ASC', where: _where})
+        .then((expenditureYearList)=>{
+            return res.send(expenditureYearList)
+        })
+        .finally(tracer.endDetach())
+    }
   }
 
 }
