@@ -23,10 +23,8 @@ module.exports = class AdminExpensesController extends AbstractController {
           tracer.log('=====> expenseId = ', expenseId)
 
           if (_.isNull(cmd)) {
-            //return res.render('admin/expenses',{EXPENSETYPE: ecrappConstants.EXPENSETYPE})
-            return models.Expenditure.findAll({attributes: ['expenditureId','expenditureDetail'],order: 'expenditureDetail DESC'})
+            return models.Expenditure.findAll({attributes: ['expenditureId','expenditureDetail','expenditureYear'],order: 'expenditureDetail ASC'})
               .then((_expenditure)=> {
-                //return Promise.resolve(res.render('admin/expenses',{EXPENDITURE: _expenditure, EXPENSETYPE: ecrappConstants.EXPENSETYPE}))
                 return Promise.resolve(models.Expense.findAll({attributes: ['expenseYear'],group: 'expenseYear',order: 'expenseYear DESC'}))
                   .then((_expenseYear)=> {
                     return Promise.resolve(res.render('admin/expenses',{EXPENDITURE: _expenditure, EXPENSEYEAR : _expenseYear, EXPENSETYPE: ecrappConstants.EXPENSETYPE}))

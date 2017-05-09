@@ -213,7 +213,7 @@
                                 <label>ประจำปีงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
-                                    <input class="form-control" type="text" name="expenditureYear" required="">
+                                    <input class="form-control" type="text" name="expenditureYear" required>
                                   </div>
                                 </div>
                               </div>
@@ -221,7 +221,7 @@
                                 <label>ประเภทงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
-                                    <select class="form-control show-tick" id="expendituretypeId" name="expendituretypeId" required="">
+                                    <select class="form-control show-tick" id="expendituretypeId" name="expendituretypeId" required>
                                       <option value="">-- Please select --</option>
                                       <% EXPENDITURETYPE.forEach(function(expendituretype){ %>
                                       <option value="<%= expendituretype.expendituretypeId %>" ><%= expendituretype.expendituretype%></option>
@@ -234,7 +234,7 @@
                                 <label>เงินงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
-                                    <input class="form-control" type="text" name="expenditureAmount" required="">
+                                    <input class="form-control" type="text" name="expenditureAmount" required>
                                   </div>
                                 </div>
                               </div>
@@ -242,7 +242,7 @@
                                 <label>รายละเอียดงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
-                                    <input class="form-control" type="text" name="expenditureDetail" required="">
+                                    <input class="form-control" type="text" name="expenditureDetail" required>
                                   </div>
                                 </div>
                               </div>
@@ -250,7 +250,7 @@
                                 <label>ข้อบัญญัติ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
-                                    <input class="form-control" type="text" name="expenditureText" required="">
+                                    <input class="form-control" type="text" name="expenditureText" required>
                                   </div>
                                 </div>
                               </div>
@@ -436,6 +436,7 @@
               $('#expenditure-title-detail').html('งบประมาณประจำปี')
               $('#btn-expenditure').attr('data-idx','')
               $('select[name="expendituretypeId"]').selectpicker('render');
+              FormExpenditure.resetForm();
           });
 
           $('body').delegate('#btn-expenditure', 'click', function() {

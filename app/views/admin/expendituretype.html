@@ -320,6 +320,7 @@
             $("#form-expendituretype").trigger('reset');
             $('#expendituretype-title-detail').html('ประเภทงบประมาณ')
             $('#btn-expendituretype').attr('data-idx','')
+            FormExpendituretype.resetForm();
         });
 
         $('body').delegate('#btn-expendituretype', 'click', function() {
