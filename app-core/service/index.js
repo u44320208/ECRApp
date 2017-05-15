@@ -6,7 +6,8 @@ const { logger } = require('../../app-common');
 let names = [
   'ExpendituretypeService',
   'ExpenditureService',
-  'ExpenseService'
+  'ExpenseService',
+  'UsersService'
 ]
 
 let instances = {}

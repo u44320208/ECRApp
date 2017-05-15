@@ -4,7 +4,8 @@ const { logger } = require('../../app-common')
 let names = [
   'ExpendituretypeDao',
   'ExpenditureDao',
-  'ExpenseDao'
+  'ExpenseDao',
+  'UsersDao'
 ]
 
 let instances = {}
