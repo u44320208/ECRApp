@@ -144,7 +144,157 @@
 
       <!-- Content Goes Here-->
       <section class="content">
-        <!-- *********************  Content *********************** -->
+        <div class="container-fluid">
+          <div class="block-header">
+            <h2>ผู้ใช้งาน</h2>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>ผู้ใช้งาน<small>Users List</small></h2>
+                   <ul class="header-dropdown m-r--5">
+                    <li>
+                      <button class="btn bg-deep-purple btn-block waves-effect" type="button" data-toggle="modal" data-target="#users-modal">เพิ่มผู้ใช้งาน</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="body">
+                  <table class="table table-bordered table-striped table-hover" id="users-table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
+                        <th>Email</th>
+                        <th>สถานะ</th>
+                        <th class="set-center">Edit/View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Admin</td>
+                        <td>admin</td>
+                        <td>admin</td>
+                        <td>admin@mail.com</td>
+                        <td>Activate</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#users-modal">search</i></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>User</td>
+                        <td>user</td>
+                        <td>user</td>
+                        <td>user@mail.com</td>
+                        <td>Activate</td>
+                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#users-modal">search</i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- modal-Users-->
+                  <div class="modal fade" id="users-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="users-title-detail">ผู้ใช้งาน</h4>
+                          <div class="modal-close"><i class="material-icons" data-dismiss="modal">close</i></div>
+                        </div>
+                        <div class="modal-body">
+                          <form id="form-users">
+                            <div class="row clearfix">
+                              <div class="col-md-6">
+                                <label>ชื่อ</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="firstName" required>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <label>นามสกุล</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="lastName" required>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row clearfix">
+                              <div class="col-md-4">
+                                <label>User Name</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="username" required>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>Password</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="password" required>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>Confirm Password</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="confirmPassword" required>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row clearfix">
+                              <div class="col-md-4">
+                                <label>Email</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="email" required>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>Role Type</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <select class="form-control show-tick" name="userRole" required>
+                                      <option value="">-- Please select --</option>
+                                      <option value="20">User</option>
+                                      <option value="10">Admin</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>สถานะผู้ใช้งาน</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <input id="radio_1" name="userStatus" type="radio" value="10" checked="">
+                                  <label for="radio_1">Enable</label>
+                                  <input id="radio_2" name="userStatus" type="radio" value="20">
+                                  <label for="radio_2">Disable</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row clearfix">
+                              <div class="col-md-12" align="center">
+                                <button class="btn btn-primary m-t-15 waves-effect" id="btn-users" type="button">บันทึก</button>
+                                <button class="btn btn-primary m-t-15 waves-effect" type="button" data-dismiss="modal">ยกเลิก</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- #END modal-Users-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- #END# Content-->
     </section>

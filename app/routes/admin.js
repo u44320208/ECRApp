@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var controllers = require('../controller');
 
-/* GET users listing. */
+/************ Admin First Page *************/
 router.get('/', controllers.AdminDashboardController);
 
 /************ Expendituretype management *************/
@@ -29,7 +29,14 @@ router.post('/expenses', controllers.AdminExpensesController);
 router.post('/expenses/:cmd/:expenseId', controllers.AdminExpensesController);
 router.delete('/expenses/:expenseId', controllers.AdminExpensesController);
 
-router.get('/reports', controllers.AdminReportsController);
+/************ Users management *************/
 router.get('/users', controllers.AdminUsersController);
+router.get('/users/:cmd', controllers.AdminUsersController);
+router.get('/users/:cmd/:userId', controllers.AdminUsersController);
+router.post('/users', controllers.AdminUsersController);
+router.post('/users/:cmd/:userId', controllers.AdminUsersController);
+router.delete('/users/:userId', controllers.AdminUsersController);
+
+router.get('/reports', controllers.AdminReportsController);
 
 module.exports = router;
