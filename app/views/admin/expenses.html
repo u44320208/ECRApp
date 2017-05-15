@@ -160,8 +160,8 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <select class="form-control show-tick" id="select-year" name="select-year">
-                          <% EXPENSEYEAR.forEach(function(expenseYear){ %>
-                          <option value="<%= expenseYear.expenseYear %>" ><%= expenseYear.expenseYear%></option>
+                          <% EXPENDITUREYEAR.forEach(function(expenditureYear){ %>
+                          <option value="<%= expenditureYear.expenditureYear %>" ><%= expenditureYear.expenditureYear%></option>
                           <% }); %>
                         </select>
                       </div>
@@ -213,7 +213,7 @@
                         <div class="modal-body">
                           <form id="form-expenses">
                             <div class="row clearfix">
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                 <label>ประจำปีงบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
@@ -221,7 +221,20 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-4">
+                                <label>ประเภทงบประมาณ</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <select class="form-control show-tick" id="expendituretypeId" name="expendituretypeId">
+                                      <option value="">-- Please select --</option>
+                                      <% EXPENDITURETYPE.forEach(function(expendituretype){ %>
+                                      <option value="<%= expendituretype.expendituretypeId %>" ><%= expendituretype.expendituretype%></option>
+                                      <% }); %>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
                                 <label>งบประมาณ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
@@ -439,12 +452,13 @@
               order: [[ 1, "desc" ]],
           }).api();
 
-          var listExpenditure = function(expenditureYear) {
+          var listExpenditure = function(expenditureYear, expendituretypeId) {
               $.ajax({
                   url: "/admin/expenditure/list-expendituredetail",
                   type: "GET",
                   data: {
-                    expenditureYear: expenditureYear
+                    expenditureYear: expenditureYear,
+                    expendituretypeId: expendituretypeId
                   }
               }).done(function(data) {
                 let select = $("#expenditureId")
@@ -461,15 +475,19 @@
           }
 
           // Call listExpenditure()
-          listExpenditure($('select[name="select-year"]').val())
+          listExpenditure($('select[name="select-year"]').val(), null)
 
           $( 'body' ).delegate('#select-year', 'change', function() {
               ExpensesTable.ajax.reload()
-              listExpenditure(this.value)
+              listExpenditure(this.value, null)
           })
 
           $( 'body' ).delegate('input[name="expenseYear"]', 'change', function() {
-              listExpenditure(this.value)
+              listExpenditure(this.value, $('select[name="expendituretypeId"]').val())
+          })
+
+          $( 'body' ).delegate('#expendituretypeId', 'change', function() {
+              listExpenditure($('input[name="expenseYear"]').val(), this.value)
           })
 
           $( 'body' ).delegate('#btn-addExpenses', 'click', function() {
@@ -529,8 +547,9 @@
               $('#btn-expenses').attr('data-idx','')
               $('select[name="expenditureId"]').selectpicker('render');
               $('select[name="expenseType"]').selectpicker('render');
+              $('select[name="expendituretypeId"]').selectpicker('render');
               FormExpenses.resetForm();
-              listExpenditure($('select[name="select-year"]').val())
+              listExpenditure($('select[name="select-year"]').val(), null)
           });
 
           $('body').delegate('#btn-expenses', 'click', function() {

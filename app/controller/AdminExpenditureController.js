@@ -240,9 +240,18 @@ module.exports = class AdminExpenditureController extends AbstractController {
     let tracer = this.trace(req.processInfo.tracking, null)
 
     let expenditureYear = req.query.expenditureYear
+    let expendituretypeId = req.query.expendituretypeId
 
     if(!_.isNull(expenditureYear)){
       let _where = { expenditureYear: expenditureYear }
+      console.log('expenditureYear : '+expenditureYear)
+      if(!_.isEmpty(expendituretypeId) && !_.isNull(expendituretypeId)){
+        _where = {
+          expenditureYear: expenditureYear,
+          expendituretypeId: expendituretypeId
+        }
+        console.log('expendituretypeId : '+expendituretypeId)
+      }
       return models.Expenditure.findAll({attributes: ['expenditureId','expenditureDetail'], order: 'expenditureDetail ASC', where: _where})
         .then((expenditureYearList)=>{
             return res.send(expenditureYearList)

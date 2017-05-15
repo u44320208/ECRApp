@@ -23,9 +23,16 @@ module.exports = class AdminExpensesController extends AbstractController {
           tracer.log('=====> expenseId = ', expenseId)
 
           if (_.isNull(cmd)) {
-              return Promise.resolve(models.Expense.findAll({attributes: ['expenseYear'],group: 'expenseYear',order: 'expenseYear DESC'}))
-                .then((_expenseYear)=> {
-                  return Promise.resolve(res.render('admin/expenses',{EXPENSEYEAR : _expenseYear, EXPENSETYPE: ecrappConstants.EXPENSETYPE}))
+              // return Promise.resolve(models.Expenditure.findAll({attributes: ['expenditureYear'],group: 'expenditureYear',order: 'expenditureYear DESC'}))
+              //   .then((_expenditureYear)=> {
+              //     return Promise.resolve(res.render('admin/expenses',{EXPENDITUREYEAR : _expenditureYear, EXPENSETYPE: ecrappConstants.EXPENSETYPE}))
+              //   })
+              return models.Expendituretype.findAll({attributes: ['expendituretypeId','expendituretype'],order: 'expendituretypeId ASC'})
+                .then((_expendituretype)=> {
+                  return Promise.resolve(models.Expenditure.findAll({attributes: ['expenditureYear'],group: 'expenditureYear',order: 'expenditureYear DESC'}))
+                    .then((_expenditureYear)=> {
+                      return Promise.resolve(res.render('admin/expenses',{EXPENDITURETYPE: _expendituretype, EXPENDITUREYEAR : _expenditureYear, EXPENSETYPE: ecrappConstants.EXPENSETYPE}))
+                    })
                 })
           }
 
