@@ -298,6 +298,24 @@
                             </div>
                             <div class="row clearfix">
                               <div class="col-md-6">
+                                <label>จำนวนเงินหักส่ง</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseDeducted">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <label>จำนวนเงินจ่ายจริง</label><span class="field-required">&nbsp;*</span>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expensePay">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row clearfix">
+                              <div class="col-md-6">
                                 <label>วันที่ทำรายการ</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="input-group" style="margin-bottom: 0px"><span class="input-group-addon"><i class="material-icons">date_range</i></span>
@@ -314,6 +332,16 @@
                                   <label for="radio_3">ปกติ</label>
                                   <input id="radio_4" name="expenseStatus" type="radio" value="20">
                                   <label for="radio_4">ยกเลิก</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row clearfix">
+                              <div class="col-md-12">
+                                <label>หมายเหตุ</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" name="expenseNote">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -530,7 +558,10 @@
                   $('input[name="expenseDetail"]').val(resp.data.expenseDetail);
                   $('input[name="expenseAmount"]').val(resp.data.expenseAmount);
                   $('input[name="expenseApprove"]').val(resp.data.expenseApprove);
+                  $('input[name="expensePay"]').val(resp.data.expensePay);
+                  $('input[name="expenseDeducted"]').val(resp.data.expenseDeducted);
                   $('input[name="expenseDate"]').val(resp.data.expenseDate);
+                  $('input[name="expenseNote"]').val(resp.data.expenseNote);
                   $('input[name="insertName"]').val(resp.data.insertName);
                   $('input[name="insertDate"]').val(resp.data.insertDate);
                   $('input[name="updateName"]').val(resp.data.updateName);
@@ -561,8 +592,11 @@
               let expenseDetail = $('input[name="expenseDetail"]').val();
               let expenseAmount = $('input[name="expenseAmount"]').val();
               let expenseApprove = $('input[name="expenseApprove"]').val();
+              let expensePay = $('input[name="expensePay"]').val();
+              let expenseDeducted = $('input[name="expenseDeducted"]').val();
               let expenseDate = $('input[name="expenseDate"]').val();
               let expenseReceipt = $('input[name="expenseReceipt"]').val();
+              let expenseNote = $('input[name="expenseNote"]').val();
               let expenseStatus = $('input[name="expenseStatus"]:checked').val();
 
               let url = ''
@@ -579,8 +613,11 @@
                         expenseDetail: expenseDetail,
                         expenseAmount: expenseAmount,
                         expenseApprove: expenseApprove,
+                        expensePay: expensePay,
+                        expenseDeducted: expenseDeducted,
                         expenseDate: expenseDate,
                         expenseReceipt: expenseReceipt,
+                        expenseNote: expenseNote,
                         expenseStatus: expenseStatus,
                       },
                 dataType: 'json'
