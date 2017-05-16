@@ -1,5 +1,5 @@
 const AbstractController = require('./AbstractPublicController');
-const { iamsmConstants } = require('../../app-common');
+const { ecrappConstants } = require('../../app-common');
 
 // Dom
 let models = require('../../app-core/dao/db');

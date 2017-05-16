@@ -45,3 +45,14 @@ define("USERSROLE", [
         typeName: 'User'
     }
 ]);
+
+define("USERSTATUS", [
+    {
+        typeId: '10',
+        typeName: 'Enable'
+    },
+    {
+        typeId: '20',
+        typeName: 'Disable'
+    }
+]);

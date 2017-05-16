@@ -1,7 +1,5 @@
-/* jshint indent: 1 */
-
 module.exports = function(sequelize, DataTypes) {
-	var Users = sequelize.define('tblMsUsers', {
+	var Users = sequelize.define('Users', {
             userId: {field: 'user_id', type: DataTypes.INTEGER(11), allowNull: false, primaryKey: true, autoIncrement: true},
             firstName: {field: 'first_name', type: DataTypes.STRING, allowNull: false},
             lastName: {field: 'last_name', type: DataTypes.STRING, allowNull: false},

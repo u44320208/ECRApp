@@ -1,4 +1,3 @@
-
 module.exports = function(sequelize, DataTypes) {
 	var Expenditure = sequelize.define('Expenditure', {
 			expenditureId: {field: 'expenditure_id', type: DataTypes.INTEGER(11), allowNull: false, primaryKey: true, autoIncrement: true},

@@ -1,5 +1,3 @@
-/* jshint indent: 1 */
-
 module.exports = function(sequelize, DataTypes) {
 	var Expendituretype = sequelize.define('Expendituretype', {
 			expendituretypeId: {field: 'expendituretype_id', type: DataTypes.INTEGER.UNSIGNED, allowNull: false, primaryKey: true},

@@ -168,30 +168,11 @@
                         <th>ชื่อ</th>
                         <th>นามสกุล</th>
                         <th>Email</th>
+                        <th>User Role</th>
                         <th>สถานะ</th>
                         <th class="set-center">Edit/View</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Admin</td>
-                        <td>admin</td>
-                        <td>admin</td>
-                        <td>admin@mail.com</td>
-                        <td>Activate</td>
-                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#users-modal">search</i></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>User</td>
-                        <td>user</td>
-                        <td>user</td>
-                        <td>user@mail.com</td>
-                        <td>Activate</td>
-                        <td class="set-center"><i class="material-icons search-icon" data-toggle="modal" data-target="#users-modal">search</i></td>
-                      </tr>
-                    </tbody>
                   </table>
                   <!-- modal-Users-->
                   <div class="modal fade" id="users-modal" tabindex="-1" role="dialog">
@@ -252,7 +233,7 @@
                                 <label>Role Type</label><span class="field-required">&nbsp;*</span>
                                 <div class="form-group">
                                   <div class="form-line">
-                                    <select class="form-control show-tick" name="userRole" required>
+                                    <select class="form-control show-tick" id="userRole" name="userRole" required>
                                       <option value="">-- Please select --</option>
                                       <option value="20">User</option>
                                       <option value="10">Admin</option>
@@ -267,6 +248,40 @@
                                   <label for="radio_1">Enable</label>
                                   <input id="radio_2" name="userStatus" type="radio" value="20">
                                   <label for="radio_2">Disable</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row clearfix">
+                              <div class="col-md-3">
+                                <label>Create Date</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="createDate">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Create by</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="createBy">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Update Date</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="updateDate">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <label>Update by</label>
+                                <div class="form-group">
+                                  <div class="form-line">
+                                    <input class="form-control" type="text" disabled="disabled" name="updateBy">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -331,10 +346,142 @@
       $(function(){
 
           // Menu Activated
-            $( "#left-menu-master-users").addClass( 'active' );
-            $( "#left-menu-master-users ul" ).show();
-            $( "#left-menu-master-users li:nth-child(1)").addClass( 'active' );
-            $( "#left-menu-master-users a:nth-child(1)").addClass( 'toggled' );
+          $( "#left-menu-master-users").addClass( 'active' );
+          $( "#left-menu-master-users ul" ).show();
+          $( "#left-menu-master-users li:nth-child(1)").addClass( 'active' );
+          $( "#left-menu-master-users a:nth-child(1)").addClass( 'toggled' );
+
+          // Add Validation to Form
+          var FormUsers = $('#form-users').validate();
+
+          var UsersTable = $('#users-table').dataTable( {
+              bProcessing: true,
+              bServerSide: true,
+              ajax: {
+                  url: "/admin/users/list-users",
+                  type: "GET"
+              },
+              bInfo: true,
+              pageLength: 10,
+              bLengthChange: true,
+              bFilter: true,
+              bAutoWidth: false,
+              columnDefs: [
+                {"name": "number", targets: [ 0 ], visible: true, searchable: false, sortable: false, width: '20px'},
+                {"name": "username", targets: [ 1 ], visible: true, searchable: true, sortable: true},
+                {"name": "firstName", targets: [ 2 ], visible: true, searchable: true, sortable: true},
+                {"name": "lastName", targets: [ 3 ], visible: true, searchable: true, sortable: true},
+                {"name": "email", targets: [ 4 ], visible: true, searchable: true, sortable: true},
+                {"name": "userRole", targets: [ 5 ], visible: true, searchable: false, sortable: false},
+                {"name": "userStatus", targets: [ 6 ], visible: true, searchable: false, sortable: false},
+                {"name": "edit",targets: [ 7 ], visible: true, searchable: false, sortable: false, width: '20px', className: 'text-center'}
+              ],
+              order: [[ 1, "asc" ]],
+          }).api();
+
+          $( 'table' ).delegate('.icon-users-detail', 'click', function() {
+
+              let userId = $(this).data('idx');
+
+              $.ajax({
+                type: "GET",
+                url: '/admin/users/detail-users/'+userId,
+              }).done(function( resp ) {
+                console.log(resp)
+                if(resp.status != '200'){
+                  swal({
+                      type: "error",
+                      title: "เกิดข้อผิดพลาด",
+                      text: "กรุณาติดต่อผู้ดูแลระบบ",
+                      timer: 2000,
+                      showConfirmButton: true,
+                      onClose: function(){
+                          
+                      }
+                    });
+                    return;
+                }else{
+                  $('#users-title-detail').html('ผู้ใช้งาน : '+resp.data.userId)
+                  $('#btn-users').attr('data-idx',resp.data.userId)
+
+                  resp.data.userStatus === '10' ? $('input[name="userStatus"]')[0].checked = true : $('input[name="userStatus"]')[1].checked = true
+
+                  $('input[name="firstName"]').val(resp.data.firstName);
+                  $('input[name="lastName"]').val(resp.data.lastName);
+                  $('input[name="email"]').val(resp.data.email);
+                  $('input[name="username"]').val(resp.data.username);
+                  $('input[name="password"]').val(resp.data.password);
+                  $('#userRole').val(resp.data.userRole);
+                  $('#userRole').selectpicker('refresh');
+                  $('input[name="createBy"]').val(resp.data.createBy);
+                  $('input[name="createDate"]').val(resp.data.createDate);
+                  $('input[name="updateBy"]').val(resp.data.updateBy);
+                  $('input[name="updateDate"]').val(resp.data.updateDate);
+                  
+                  $('#users-modal.modal').modal('show');
+                }
+              })
+          })
+
+          $("#users-modal.modal").on('hidden.bs.modal', function () {
+              $("#form-users").trigger('reset');
+              $('#users-title-detail').html('ผู้ใช้งาน')
+              $('#btn-users').attr('data-idx','')
+              $('select[name="userRole"]').selectpicker('render');
+              FormUsers.resetForm();
+          });
+
+          $('body').delegate('#btn-users', 'click', function() {
+            if($('#form-users').valid()){
+              let userId = $(this).attr('data-idx');
+              let firstName = $('input[name="firstName"]').val();
+              let lastName = $('input[name="lastName"]').val();
+              let email = $('input[name="email"]').val();
+              let username = $('input[name="username"]').val();
+              let password = $('input[name="password"]').val();
+              let userRole = $('select[name="userRole"]').val();
+              let userStatus = $('input[name="userStatus"]:checked').val();
+
+              let url = ''
+              userId ? url = '/admin/users/update-users/'+userId  : url = '/admin/users'
+
+              $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                        userId: userId,
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        username: username,
+                        password: password,
+                        userRole: userRole,
+                        userStatus: userStatus,
+                      },
+                dataType: 'json'
+              }).done(function( resp ) {
+                console.log(resp)
+                if(resp.status != '200'){
+                  swal({
+                      type: "error",
+                      title: "เกิดข้อผิดพลาด",
+                      text: "กรุณาติดต่อผู้ดูแลระบบ",
+                      timer: 2000,
+                      showConfirmButton: true,
+                      onClose: function(){
+                          
+                      }
+                    });
+                    return;
+                }else{
+                  UsersTable.ajax.reload();
+                  $('#users-modal.modal').modal('hide');
+                }
+              })
+            }else{
+              FormUsers.focusInvalid();
+            }
+          })
             
       })
     </script>
