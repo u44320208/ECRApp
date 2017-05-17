@@ -17,7 +17,13 @@ module.exports = class LoginController extends AbstractController {
     let tracer = this.trace(req.processInfo.tracking, null)
 
     if (_.eq(req.method, 'GET')) {
-      return res.render('login');
+      req.session.destroy(function(err) {
+        if(err) {
+          console.log(err)
+        } else {
+          return res.render('login')
+        }
+      });
     }
     else if(_.eq(req.method, 'POST')){
       return this.loginProcess(req, res);
@@ -33,14 +39,28 @@ module.exports = class LoginController extends AbstractController {
     let username = req.body.username
     let password = req.body.password
 
-    if(_.eq(username, 'admin')) {
-      // return res.render('admin/index');
-      return res.redirect('admin/')
-    }
-    else{
-      // return res.render('users/index');
-      return res.redirect('users/')
-    }
+    return models.Users.findOne({ 
+      where: {
+        username: username, 
+        password: password 
+      }
+    })
+    .then((_user)=>{
+        if(_.isNull(_user)){
+          return res.render('login')
+        }
+
+        req.session.isLogin = true
+        req.session.username = _user.username
+        req.session.userRole = _user.userRole
+
+        if(_.eq(_user.userRole, '10')) {
+          return res.redirect('admin/')
+        }
+        else{
+          return res.redirect('users/')
+        }
+    })
   }
 
 }

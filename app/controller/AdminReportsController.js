@@ -1,4 +1,4 @@
-const AbstractController = require('./AbstractPublicController');
+const AbstractController = require('./AbstractAdminController');
 const { ecrappConstants } = require('../../app-common');
 
 // Dom
@@ -14,6 +14,8 @@ module.exports = class AdminReportsController extends AbstractController {
   }
 
   execute(req, res) {
+      let tracer = this.trace(req.processInfo.tracking, null)
+      
       res.send('AdminReportsController');
   }
 

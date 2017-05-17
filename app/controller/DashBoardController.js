@@ -14,6 +14,8 @@ module.exports = class DashBoardController extends AbstractController {
   }
 
   execute(req, res) {
+      let tracer = this.trace(req.processInfo.tracking, null)
+
       res.render('index')
   }
 

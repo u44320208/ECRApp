@@ -1,4 +1,4 @@
-const AbstractController = require('./AbstractPublicController');
+const AbstractController = require('./AbstractAdminController');
 const { ecrappConstants } = require('../../app-common');
 
 // Dom

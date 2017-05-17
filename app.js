@@ -24,6 +24,16 @@ app.engine("html",require("ejs").renderFile);
 app.locals.pretty = true;
 app.set('x-powered-by', false)
 
+app.use(session({
+  secret: 'ecrapp2017', 
+  resave: true, 
+  saveUninitialized: true
+}));
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next();
+});
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
