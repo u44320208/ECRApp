@@ -165,9 +165,9 @@ module.exports = class AdminUsersController extends AbstractController {
       password: req.body.password,
       userRole: req.body.userRole,
       userStatus: req.body.userStatus,
-      createBy: 'session.userName',
+      createBy: req.session.username,
       createDate: dateFormat(nowDate, 'isoDateTime'),
-      updateBy: 'session.userName',
+      updateBy: req.session.username,
       updateDate: dateFormat(nowDate, 'isoDateTime'),
     }
 
@@ -204,7 +204,7 @@ module.exports = class AdminUsersController extends AbstractController {
       password: req.body.password,
       userRole: req.body.userRole,
       userStatus: req.body.userStatus,
-      updateBy: 'session.userName',
+      updateBy: req.session.username,
       updateDate: dateFormat(nowDate, 'isoDateTime'),
     }
 
