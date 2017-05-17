@@ -17,6 +17,8 @@ var figlet = require('figlet');
 
 var app = express();
 
+let _ = require('lodash')
+
 // view engine setup
 app.set('views', path.join(__dirname +'/app/', 'views'));
 app.set('view engine', 'html');
@@ -27,7 +29,8 @@ app.set('x-powered-by', false)
 app.use(session({
   secret: 'ecrapp2017', 
   resave: true, 
-  saveUninitialized: true
+  saveUninitialized: true,
+  maxAge: Date.now() + (30 * 60 * 1000)
 }));
 app.use(function(req, res, next){
   res.locals.session = req.session;
@@ -43,8 +46,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/admin', admin);
-app.use('/users', users);
+app.use('/admin', checkAdminAuth, admin);
+app.use('/users', checkUsersAuth, users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,7 +60,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
@@ -72,5 +75,21 @@ figlet('ECRApp LPPAO Chang \n..\n by Chakrit Peungtokit', function (err, data) {
   }
   console.log(data)
 });
+
+function checkAdminAuth(req, res, next) {
+  if (!req.session || _.isUndefined(req.session.isLogin) || !_.eq(req.session.isLogin, true) || !_.eq(req.session.userRole, '10')) {
+    res.redirect('/login/')
+  } else {
+    next();
+  }
+}
+
+function checkUsersAuth(req, res, next) {
+  if (!req.session || _.isUndefined(req.session.isLogin) || !_.eq(req.session.isLogin, true) || !_.eq(req.session.userRole, '20')) {
+    res.redirect('/login/')
+  } else {
+    next();
+  }
+}
 
 module.exports = app;

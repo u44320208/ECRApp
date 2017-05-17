@@ -21,7 +21,7 @@ module.exports = class LoginController extends AbstractController {
         if(err) {
           console.log(err)
         } else {
-          return res.render('login')
+          return res.render('login',{message: ''})
         }
       });
     }
@@ -47,7 +47,7 @@ module.exports = class LoginController extends AbstractController {
     })
     .then((_user)=>{
         if(_.isNull(_user)){
-          return res.render('login')
+          return res.render('login',{message: 'Username and Password ไม่ถูกต้อง'})
         }
 
         req.session.isLogin = true
