@@ -211,7 +211,7 @@ module.exports = class AdminExpenditureController extends AbstractController {
       expenditureDetail: req.body.expenditureDetail,
       expenditureText: req.body.expenditureText,
       expenditureAmount: req.body.expenditureAmount,
-      updateName: req.session.username
+      updateName: req.session.username,
       updateDate: dateFormat(nowDate, 'isoDateTime'),
     }
 

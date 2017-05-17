@@ -51,7 +51,7 @@ module.exports = class LoginController extends AbstractController {
         }
 
         req.session.isLogin = true
-        req.session.username = _user.username
+        req.session.username = _user.firstName +' '+ _user.lastName
         req.session.userRole = _user.userRole
 
         if(_.eq(_user.userRole, '10')) {
